@@ -51,7 +51,8 @@ Once the installation completes:
 
     source activate metaseq-test
 
-3. When you're done, simply close the terminal.
+3. Whenever you're done using the test environment and want to go back to
+   normal, simply close the terminal.
 
 
 
