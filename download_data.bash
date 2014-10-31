@@ -37,11 +37,19 @@ http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeCaltechRnaSeq/w
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeCaltechRnaSeq/wgEncodeCaltechRnaSeqK562R1x75dAlignsRep2V2.bam|data/K562_2.chr11.bam
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeSydhTfbs/wgEncodeSydhTfbsK562Gata1bIggmusPk.narrowPeak.gz|data/K562_GATA1.narrowPeak
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeSydhTfbs/wgEncodeSydhTfbsK562Tal1sc12984IggmusPk.narrowPeak.gz|data/K562_TAL1.narrowPeak
-http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeSydhTfbs/wgEncodeSydhTfbsK562Gata1bIggmusSig.bigWig|data/K562_GATA1.chr11.bigWig
-http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeSydhTfbs/wgEncodeSydhTfbsK562Tal1sc12984IggmusSig.bigWig|data/K562_TAL1.chr11.bigWig
-http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig|data/K562_H3K4me3.chr11.bigWig
-http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeSydhHistone/wgEncodeSydhHistoneK562H3k27me3bUcdSig.bigWig|data/K562_H3K27me3.chr11.bigWig
+#http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeSydhTfbs/wgEncodeSydhTfbsK562Gata1bIggmusSig.bigWig|data/K562_GATA1.chr11.bigWig
+#http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeSydhTfbs/wgEncodeSydhTfbsK562Tal1sc12984IggmusSig.bigWig|data/K562_TAL1.chr11.bigWig
+#http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig|data/K562_H3K4me3.chr11.bigWig
+#http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k27me3StdSig.bigWig|data/K562_H3K27me3.chr11.bigWig
+#http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneH1hescH3k27me3StdSig.bigWig|data/H1-hESC_H3K27me3.chr11.bigWig
+#http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneH1hescH3k4me3StdSig.bigWig|data/H1-hESC_H3K4me3.chr11.bigWig
 ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz|data/gencode.v19.annotation.chr11.gtf
+https://www.encodeproject.org/files/ENCFF001FWO/@@download/ENCFF001FWO.bam|data/K562_H3K4me3.chr11.bam
+EOF
+
+cat > encode_specific << EOF
+https://www.encodeproject.org/files/ENCFF001FWO/@@download/ENCFF001FWO.bam|data/K562_H3K4me3.chr11.bam
+https://www.encodeproject.org/files/ENCFF001FVU/@@download/ENCFF001FVU.bam|data/K562_H3K27me3.chr11.bam
 EOF
 
 
@@ -51,8 +59,65 @@ log () {
     echo "[ $(date) ] $1"
 }
 
+
+# Mac or Linux?
+uname | grep "Darwin" > /dev/null && SYSTEM_TYPE=mac || SYSTEM_TYPE=linux
+log "Detected operating system: ${SYSTEM_TYPE} (based on the output of uname, which is \"$(uname)\")".
+
+MACH_TYPE=$(uname -m)
+
+if [[ ($MACH_TYPE != "x86_64") && ($SYSTEM_TYPE = "mac") && ( $INSTALL_MINICONDA = 1 ) ]]; then
+    echo "
+    Sorry, installing miniconda on 32-bit Mac OSX is not supported.  Please see
+    http://conda.pydata.org/miniconda.html.  Exiting!
+    "
+    exit 1
+fi
+
+# Determine how to download files.  wget is (typically) installed by default on
+# Linux; curl on Mac.
+if [[ $SYSTEM_TYPE = "mac" ]]; then
+    downloader ()
+    {
+        log "Downloading $1"
+        curl --location $1 > $2
+    }
+else
+    downloader ()
+    {
+        log "Downloading $1"
+        wget $1 -O $2
+    }
+fi
+
+
+
+# Handle the ENCODE ones specifically.  Annoyingly, the BAM files are behind
+# https which samtools can't handle.
+for i in $(grep ".bam" encode_specific | grep -v "#"); do
+    url=$(echo $i | cut -f1 -d "|")
+    dest=$(echo $i | cut -f2 -d "|")
+    base="data/$(basename $url)"
+    if [ -e $dest ]; then
+        log "$dest exists; skipping"
+        continue
+    fi
+    log "downloading $url -> $base"
+    downloader $url $base
+    log "indexing $base"
+    samtools index $base
+    log "subsetting $base -> $dest"
+    samtools view -b $base chr11 > $dest
+    log "indexing $dest"
+    samtools index $dest
+    log "rm $base"
+    rm $base
+done
+
+
+
 # Download just chr11; we have to index later.
-for i in $(grep ".bam" filelist); do
+for i in $(grep ".bam" filelist | grep -v "#"); do
     url=$(echo $i | cut -f1 -d "|")
     dest=$(echo $i | cut -f2 -d "|")
     if [ -e $dest ]; then
@@ -73,7 +138,7 @@ done
 
 # K562 peaks (TFs; expect them to be at K562-specific genes).  Only save those
 # on chr11.
-for i in $(grep ".narrowPeak" filelist); do
+for i in $(grep ".narrowPeak" filelist | grep -v "#"); do
     url=$(echo $i | cut -f1 -d "|")
     dest=$(echo $i | cut -f2 -d "|")
     if [ -e $dest ]; then
@@ -81,7 +146,9 @@ for i in $(grep ".narrowPeak" filelist); do
         continue
     fi
     log "$url > $dest"
-    curl $url | zcat | grep "^chr11" > $dest
+    downloader $url ${dest}.tmp.gz
+    zcat ${dest}.tmp.gz | grep "^chr11" > $dest
+    rm ${dest}.tmp.gz
 done
 
 
@@ -110,7 +177,7 @@ for i in $(grep ".bigWig" filelist); do
 done
 
 # Download the chr11 features for gencode v19 annotations.
-for i in $(grep "gencode.v19" filelist); do
+for i in $(grep "gencode.v19" filelist | grep -v "#"); do
     url=$(echo $i | cut -f1 -d "|")
     dest=$(echo $i | cut -f2 -d "|")
     if [ -e $dest ]; then
