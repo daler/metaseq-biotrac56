@@ -50,6 +50,7 @@ EOF
 cat > encode_specific << EOF
 https://www.encodeproject.org/files/ENCFF001FWO/@@download/ENCFF001FWO.bam|data/K562_H3K4me3.chr11.bam
 https://www.encodeproject.org/files/ENCFF001FVU/@@download/ENCFF001FVU.bam|data/K562_H3K27me3.chr11.bam
+https://www.encodeproject.org/files/ENCFF001HTM/@@download/ENCFF001HTM.bam|data/K562_input.chr11.bam
 EOF
 
 
