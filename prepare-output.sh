@@ -13,7 +13,27 @@
 #
 # requires runipy to be installed (pip install runipy)
 set -e
-rm gene.npz gene.features tss_*.features tss_*.npz
+
+clean_run_files () {
+
+    for fn in \
+        gene.npz \
+        gene.features \
+        tss_*.features \
+        tss_*.npz \
+        TSS.gtf \
+        genes.gtf \
+        filtered-genes.gtf \
+        filelist \
+        encode_specific \
+        ; do
+        if [ -e $fn ]; then
+            rm $fn
+        fi
+    done
+}
+
+clean_run_files
 
 for x in de-example heatmap-example; do
     runipy -o ${x}.ipynb
@@ -28,4 +48,7 @@ for x in de-example heatmap-example; do
     # clean up
     mv tmp.py ${x}.py
     rm -r ${x}_files
+    rm ${x}.tex
 done
+
+clean_run_files
