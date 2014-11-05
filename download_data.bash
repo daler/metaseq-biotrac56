@@ -166,7 +166,7 @@ bigWigSubset () {
     rm $tmp
 }
 
-for i in $(grep ".bigWig" filelist); do
+for i in $(grep ".bigWig" filelist | grep -v "#"); do
     url=$(echo $i | cut -f1 -d "|")
     dest=$(echo $i | cut -f2 -d "|")
     if [ -e $dest ]; then
