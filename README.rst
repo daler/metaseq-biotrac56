@@ -16,23 +16,21 @@ viewing.
 Files in the repository
 -----------------------
 
-- `de-example.ipynb`: an IPython Notebook to demo some differntial expression analysis
-- `heatmap-example.ipynb`: an IPython notebook to demo integration with
-   ChIP-seq data
-- `processor.py`: for post-processing .py files created from .ipynb files
-- `prepare-output.sh`: script to prepare files
-- `download_data.bash` to download all data used in the demo
-- `RNA-seq.R` R script to perform differential expression on the downloaded
-   RNA-seq data
+- ``de-example.ipynb``: an IPython Notebook to demo some differntial expression analysis
+- ``heatmap-example.ipynb``: an IPython notebook to demo integration with
+  ChIP-seq data
+- ``processor.py``: for post-processing .py files created from .ipynb files
+- ``prepare-output.sh``: script to prepare files
+- ``download_data.bash`` to download all data used in the demo
+- ``RNA-seq.R``:  R script to perform differential expression on the downloaded
+  RNA-seq data
 
 
 Setup
 -----
 
-In order to run the IPython notebooks on your own computer, you'll need to:
-
-* install metaseq and its prerequisites
-* download the data used in this analysis
+In order to run the IPython notebooks on your own computer, you will need to
+install the software and download the data.
 
 The following instructions assume you do not have the scientific Python stack
 installed and do not have genomics tools (BEDTools, samtools, tabix, UCSC

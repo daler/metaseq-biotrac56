@@ -12,19 +12,19 @@
 # (`File -> Download as -> Python`). Note that you will have to delete
 # or comment out the lines that start with `get_ipython().magic`, since
 # these are Notebook-only calls.
-# * The command `%matplotlib inline` will make plots show up inside the
-# Notebook as static images.
-# * The command `%matplotlib` will make plots show up in their own
+# Viewing plots
+# The command **`%matplotlib inline`** will make plots show up inside
+# the Notebook as static images.
+# The command **`%matplotlib`** will make plots show up in their own
 # separate window, which means you can pan, zoom, and otherwise interact
-# with them.
-
-# Set up this Notebook
-# The following code blocks are only for use in the IPython Notebook.
-# The first one loads style information for the display of the notebook,
-# and the second one turns on inline plotting.
+# with them.  In some cases, Mac OSX will show empty figures when using
+# `%matplotlib inline`; in this case, use `%matplotlib` to have the
+# plots show up in a different window.
 
 
-# Show plots inline
+# Show plots inline.  If it doesn't seem like plots are
+# showing up correctly below, try deleting the "inline" and
+# then run this cell again.
 # get_ipython().magic(u'matplotlib inline')
 
 
@@ -309,7 +309,6 @@ print np.array(m)
 
 
 import fisher
-from fisher import tableprinter
 
 print "\n\nUpregulated genes"
 
@@ -327,8 +326,8 @@ kwargs = dict(
     table=table,
     row_labels=['upregulated', 'not'],
     col_labels=['with peak', 'no peak'])
-print tableprinter.print_2x2_table(**kwargs)
-print tableprinter.print_row_perc_table(**kwargs)
+print metaseq.tableprinter.print_2x2_table(**kwargs)
+print metaseq.tableprinter.print_row_perc_table(**kwargs)
 print fisher.pvalue(*table)
 
 
@@ -347,8 +346,8 @@ kwargs = dict(
     table=table,
     row_labels=['downregulated', 'not'],
     col_labels=['with peak', 'no peak'])
-print tableprinter.print_2x2_table(**kwargs)
-print tableprinter.print_row_perc_table(**kwargs)
+print metaseq.tableprinter.print_2x2_table(**kwargs)
+print metaseq.tableprinter.print_row_perc_table(**kwargs)
 print fisher.pvalue(*table)
 
 
