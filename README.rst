@@ -2,32 +2,49 @@ Overview
 --------
 This repository is used as part of the Bio-Trac 56 RNA-seq course.
 
-It contains:
+Quick view
+----------
+Don't want to download the data or install anything?  You can view the rendered
+notebooks here:
 
-    - IPython Notebooks which are used for the demo of metaseq
-    - `download_data.bash` to download all data used in the demo
-    - `RNA-seq.R` R script to perform differential expression on the downloaded
-      RNA-seq data
+* http://nbviewer.ipython.org/github/daler/metaseq-biotrac56/blob/master/de-example.ipynb
+* http://nbviewer.ipython.org/github/daler/metaseq-biotrac56/blob/master/heatmap-example.ipynb
 
+Alternatively, you can download the PDF versions in this repository for offline
+viewing.
 
-If you don't care about running the demo yourself, you can simply look at the
-rendered notebook at:
+Files in the repository
+-----------------------
 
-    http://nbviewer.ipython.org/github/daler/metaseq-biotrac56/blob/master/de-example.ipynb
-
-Otherwise, follow the instructions below to get set up.
+- `de-example.ipynb`: an IPython Notebook to demo some differntial expression analysis
+- `heatmap-example.ipynb`: an IPython notebook to demo integration with
+   ChIP-seq data
+- `processor.py`: for post-processing .py files created from .ipynb files
+- `prepare-output.sh`: script to prepare files
+- `download_data.bash` to download all data used in the demo
+- `RNA-seq.R` R script to perform differential expression on the downloaded
+   RNA-seq data
 
 
 Setup
 -----
 
-Note: see the end of this README if you have the scientific Python stack and
-genomics tools (BEDTools, samtools, tabix, UCSC utilities) already installed.
+In order to run the IPython notebooks on your own computer, you'll need to:
 
+* install metaseq and its prerequisites
+* download the data used in this analysis
+
+The following instructions assume you do not have the scientific Python stack
+installed and do not have genomics tools (BEDTools, samtools, tabix, UCSC
+utilities) already installed.  If you do, then see the end of this README for
+more advanced instructions.
+
+While this installation process takes a few minutes, the nice thing is that
+when it's complete you will have a fully-functioning scientific Python
+installation as well as some common genomics tools.
 
 Install metaseq and prerequisites
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Instructions are slightly different for Mac and Linux; follow the directions on
 https://pythonhosted.org/metaseq/install.html. This will help you run the
 `metaseq` installation script, which will:
@@ -40,6 +57,9 @@ https://pythonhosted.org/metaseq/install.html. This will help you run the
 
 The isolated Python environment will not affect any other Python versions you
 have on your computer.
+
+The page at https://pythonhosted.org/metaseq/install.html has more details and
+the link to the installation script.
 
 
 Activate the environment
@@ -55,25 +75,26 @@ Once the installation completes:
    normal, simply close the terminal.
 
 
+Download the materials and data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Download the materials
-~~~~~~~~~~~~~~~~~~~~~~
-
-1. Go to https://github.com/daler/metaseq-biotrac56 and click the *Download
-   ZIP* button on the lower right-hand side.
-
-2. Unzip this file somewhere convenient on your machine
-
-
-
-Downloading the prepared data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Data will be available at a to-be-determined location (approx 530GB).
+1. Download the code to run the analysis from
+   https://github.com/daler/metaseq-biotrac56/archive/master.zip
+2. Unzip the code somewhere convenient on your machine.  Let's say you unzipped
+   it to `~/metaseq-biotrac56`.
+3. Download the data (755 MB) from
+   http://helix.nih.gov/~dalerr/metaseq-biotrac56-data.zip.
+4. Extract the `data` folder and place it in the same directory as where you
+   unzipped the code.  So if you had unzipped the code to
+   `~/metaseq-biotrac56`, you now have a directory called
+   `~/metaseq-biotrac56/data` and files like
+   `~/metaseq-biotrac56/data/H1-hESC_1.chr11.bam`.
 
 
-Installing demo prerequisites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Install demo prerequisites
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+There are some additional requirements that we use in the demo that need to be
+installed.
 
 1. Make sure the `metaseq-test` environment is activated (see above)
 
@@ -113,6 +134,9 @@ tools (BEDTools, samtools, tabix, UCSC utilities) run::
     pip install metaseq
     pip install -r extra-requirements.txt
 
+Alternatively, if you only want to install a subset of these tools, you can run
+the `metaseq` installation script with the `-h` option to see available
+options.  See https://pythonhosted.org/metaseq/install.html#customizing.
 
 
 Downloading and processing data from scratch
