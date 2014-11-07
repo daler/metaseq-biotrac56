@@ -57,7 +57,6 @@ print metaseq.__version__
 # databases on networked filesystems.
 
 
-plt.rcParams['font.family'] = 'Arial'
 plt.rcParams['font.size'] = 11
 plt.rcParams['legend.scatterpoints'] = 1
 plt.rcParams['legend.fontsize'] = 10

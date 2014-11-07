@@ -126,7 +126,6 @@ print metaseq.__version__
 # This makes matplotlib's plotting defaults a little nicer
 
 
-plt.rcParams['font.family'] = 'Arial'
 plt.rcParams['font.size'] = 11
 plt.rcParams['legend.scatterpoints'] = 1
 plt.rcParams['legend.fontsize'] = 10
