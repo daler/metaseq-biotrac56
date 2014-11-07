@@ -27,7 +27,7 @@ some links to get you started:
 Files in the repository
 -----------------------
 
-- ``de-example.ipynb``: an IPython Notebook to demo some differntial expression analysis
+- ``de-example.ipynb``: an IPython Notebook to demo some differential expression analysis
 - ``heatmap-example.ipynb``: an IPython notebook to demo integration with
   ChIP-seq data
 - ``processor.py``: for post-processing .py files created from .ipynb files
@@ -76,7 +76,7 @@ Activate the environment
 Once the installation completes:
 
 1. Open a new terminal
-2. Assuming you've accepted the defauls from the installation script, run::
+2. Assuming you've accepted the defaults from the installation script, run::
 
     source activate metaseq-test
 
@@ -90,20 +90,20 @@ Download the materials and data
 1. Download the code to run the analysis from
    https://github.com/daler/metaseq-biotrac56/archive/master.zip
 2. Unzip the code somewhere convenient on your machine.  Let's say you unzipped
-   it to `~/metaseq-biotrac56`.
+   it to ``~/metaseq-biotrac56``.
 3. Download the data (755 MB) from
    http://helix.nih.gov/~dalerr/metaseq-biotrac56-data.zip.
-4. Extract the `data` folder and place it in the same directory as where you
+4. Extract the ``data`` folder and place it in the same directory as where you
    unzipped the code.  So if you had unzipped the code to
-   `~/metaseq-biotrac56`, you now have a directory called
-   `~/metaseq-biotrac56/data` and files like
-   `~/metaseq-biotrac56/data/H1-hESC_1.chr11.bam`.
+   ``~/metaseq-biotrac56``, you now have a directory called
+   ``~/metaseq-biotrac56/data`` and lots of data files; for example one of them
+   should be ``~/metaseq-biotrac56/data/H1-hESC_1.chr11.bam``.
 
 
 Install demo prerequisites
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 There are some additional requirements that we use in the demo that need to be
-installed.
+installed (``mygene`` and ``fisher``, for example).
 
 1. Make sure the `metaseq-test` environment is activated (see above)
 
