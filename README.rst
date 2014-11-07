@@ -15,6 +15,8 @@ viewing.
 
 Updates
 -------
+Learning Python
+~~~~~~~~~~~~~~~
 After the talk, some people asked about learning Python in general. Here are
 some links to get you started:
 
@@ -23,6 +25,55 @@ some links to get you started:
 - Software Carpentry:  http://software-carpentry.org/index.html
 - Python for Biologists: http://pythonforbiologists.com/index.php/introduction-to-python-for-biologists/
 
+Virtual Machine
+~~~~~~~~~~~~~~~
+Some people expressed interest in a virtual machine that they could use to try
+the demos.
+
+This virtual machine contains Ubuntu 14.04.1 with everything you need to run
+the demos.  You can use it on Mac or Windows by first installing the
+`VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ application and the
+VirtualBox Extension Pack for your platform.  This will let you run the image
+as a guest operating system on your machine.
+
+Then download the following virtual machine image (3.8 GB):
+http://helix.nih.gov/~dalerr/metaseq-vm.ova
+
+When it is done downloading, double-click its icon to import.  Or, if
+VirtualBox is already open, choose File -> Import Appliance. **NOTE: you only
+have to do this once.**
+
+You have the opportunity to make some tweaks, like how much RAM you'd like the
+VM to have.  You can always change this later.
+
+Now, any time you want to start the VM:
+
+1. Open the VirtualBox program
+2. Select the metaseq VM from the list (it's probably the only one on the list)
+3. Press the "Start" button.
+
+Ubuntu will now start up in a separate window.  See the `VirtualBox manual
+<http://www.virtualbox.org/manual/>`_ for more details.
+
+username: ``ubuntu``
+password: ``ubuntu``
+
+The "installation-details.txt" file on the desktop shows what was installed.
+
+To run the demos, open a terminal, and use the commands::
+
+    source activate metaseq-test
+
+    cd metaseq-biotrac56-master
+
+    ipython notebook
+
+A Firefox window will pop up, running the demo.
+
+When you're done, either go to the gear icon in the upper right and choose
+"Shut Down", or simply close the window to shut down the VM. The current state
+of the VM will be saved for the next time you start it up, so any changes you
+make will be saved on your computer.
 
 Files in the repository
 -----------------------
