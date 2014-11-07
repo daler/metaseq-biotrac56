@@ -13,6 +13,17 @@ notebooks here:
 Alternatively, you can download the PDF versions in this repository for offline
 viewing.
 
+Updates
+-------
+After the talk, some people asked about learning Python in general. Here are
+some links to get you started:
+
+- Think Like a Computer Scientist: http://interactivepython.org/courselib/static/thinkcspy/toc.html
+- Codecademy: http://www.codecademy.com/learn
+- Software Carpentry:  http://software-carpentry.org/index.html
+- Python for Biologists: http://pythonforbiologists.com/index.php/introduction-to-python-for-biologists/
+
+
 Files in the repository
 -----------------------
 
