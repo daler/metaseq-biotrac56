@@ -84,7 +84,7 @@ Quick version if using Mac
 
     # Download and unpack code and data for this example
     curl -O https://github.com/daler/metaseq-biotrac56/archive/master.zip
-    unzip metaseq-biotrac56-master.zip
+    unzip master.zip
     cd metaseq-biotrac56
     curl -O http://helix.nih.gov/~dalerr/metaseq-biotrac56-data.zip
     unzip metaseq-biotrac56-data.zip
