@@ -42,6 +42,41 @@ While this installation process takes a few minutes, the nice thing is that
 when it's complete you will have a fully-functioning scientific Python
 installation as well as some common genomics tools.
 
+
+Quick version if using Linux
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you're using Linux, the following commands will download and install metaseq
+and dependencies, download and unpack the example files and example data, and
+start the IPython Notebook server::
+
+    # Install metaseq and dependencies
+    wget --no-check-certificate https://raw.githubusercontent.com/daler/metaseq/master/create-metaseq-test-environment.sh
+    bash create-metaseq-test-environment.sh -v
+
+    # Download and unpack code and data for this example
+    wget https://github.com/daler/metaseq-biotrac56/archive/master.zip
+    unzip metaseq-biotrac56-master.zip
+    cd metaseq-biotrac56
+    wget http://helix.nih.gov/~dalerr/metaseq-biotrac56-data.zip
+    unzip metaseq-biotrac56-data.zip
+
+    # Activate metaseq environment
+    source activate metaseq-test
+
+    # Install additional prerequisites
+    pip install -r extra-requirements.txt
+
+    # Start the notebook
+    ipython notebook
+
+
+A web browser should open, and you should see the IPython notebook starting
+page.
+
+If you don't have Linux, keep reading for other ways of installing metaseq and
+the example data.
+
+
 Install metaseq and prerequisites
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Instructions are slightly different for Mac and Linux; follow the directions on
@@ -181,7 +216,7 @@ the demos.  You can use it on Mac or Windows by first installing the
 VirtualBox Extension Pack for your platform.  This will let you run the image
 as a guest operating system on your machine.
 
-Then download the following virtual machine image (3.8 GB):
+Then download the following virtual machine image (4.7 GB):
 http://helix.nih.gov/~dalerr/metaseq-vm.ova
 
 When it is done downloading, double-click its icon to import.  Or, if
