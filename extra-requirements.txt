@@ -1,4 +1,4 @@
 biopython
 fisher
-ipython[all]
+ipython
 mygene
