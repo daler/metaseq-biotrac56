@@ -1,3 +1,4 @@
+biopython
 fisher
 ipython[all]
 mygene
