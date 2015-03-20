@@ -102,6 +102,9 @@ Quick version if using Mac
     ipython notebook
 
 
+Detailed installation instructions
+----------------------------------
+
 
 Install metaseq and prerequisites
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
