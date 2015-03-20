@@ -83,10 +83,10 @@ Quick version if using Mac
     bash create-metaseq-test-environment.sh -v
 
     # Download and unpack code and data for this example
-    curl -O https://github.com/daler/metaseq-biotrac56/archive/master.zip
-    unzip master.zip
+    curl -O -L https://github.com/daler/metaseq-biotrac56/archive/master.zip
+    unzip metaseq-biotrac56-master.zip
     cd metaseq-biotrac56
-    curl -O http://helix.nih.gov/~dalerr/metaseq-biotrac56-data.zip
+    curl -O -L http://helix.nih.gov/~dalerr/metaseq-biotrac56-data.zip
     unzip metaseq-biotrac56-data.zip
 
     # Activate metaseq environment
