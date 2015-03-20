@@ -73,9 +73,6 @@ start the IPython Notebook server::
 A web browser should open, and you should see the IPython notebook starting
 page.
 
-If you don't have Linux, keep reading for other ways of installing metaseq and
-the example data.
-
 
 Quick version if using Mac
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -101,10 +98,32 @@ Quick version if using Mac
     # Start the notebook
     ipython notebook
 
+A web browser should open, and you should see the IPython notebook starting
+page.
+
+Usage
+~~~~~
+Any time you want to use the new environment, open a terminal and type::
+
+    source activate metaseq-test
+
+This lets you use any of the installed Python packages and lets you install any
+other packages without needing admin rights.  It is completely separate from
+any other Python you might have installed on your machine. This command adjusts
+your `$PATH` variable so that the first place it looks for programs is the
+`~/miniconda/bin` directory.
+
+Note that this environment can be used for *any* scientific Python use, not
+just for `metaseq`.
+
+Deactivate the environment by closing the terminal, or::
+
+    source deactivate
+
+
 
 Detailed installation instructions
 ----------------------------------
-
 
 Install metaseq and prerequisites
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
