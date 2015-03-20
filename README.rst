@@ -77,6 +77,32 @@ If you don't have Linux, keep reading for other ways of installing metaseq and
 the example data.
 
 
+Quick version if using Mac
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+::
+
+    # Install metaseq and dependencies
+    curl -O https://raw.githubusercontent.com/daler/metaseq/master/create-metaseq-test-environment.sh
+    bash create-metaseq-test-environment.sh -v
+
+    # Download and unpack code and data for this example
+    curl -O https://github.com/daler/metaseq-biotrac56/archive/master.zip
+    unzip metaseq-biotrac56-master.zip
+    cd metaseq-biotrac56
+    curl -O http://helix.nih.gov/~dalerr/metaseq-biotrac56-data.zip
+    unzip metaseq-biotrac56-data.zip
+
+    # Activate metaseq environment
+    source activate metaseq-test
+
+    # Install additional prerequisites
+    pip install -r extra-requirements.txt
+
+    # Start the notebook
+    ipython notebook
+
+
+
 Install metaseq and prerequisites
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Instructions are slightly different for Mac and Linux; follow the directions on
@@ -101,12 +127,18 @@ Activate the environment
 Once the installation completes:
 
 1. Open a new terminal
+
 2. Assuming you've accepted the defaults from the installation script, run::
 
     source activate metaseq-test
 
 3. Whenever you're done using the test environment and want to go back to
    normal, simply close the terminal.
+
+4. When you want to use the test environment again, you need to run::
+
+    source activate metaseq-test
+
 
 
 Download the materials and data
